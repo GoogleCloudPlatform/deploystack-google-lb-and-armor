@@ -44,8 +44,8 @@
       "default": ""
     },
     {
-      "name": "region",
-      "description": "The region where resources will be deployed.",
+      "name": "regions",
+      "description": "The regions where resources will be deployed.",
       "default": "europe-west1"
     },
     {
