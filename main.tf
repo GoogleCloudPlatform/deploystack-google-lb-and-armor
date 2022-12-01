@@ -19,7 +19,7 @@ locals {
 }
 
 module "project" {
-  source = "../../../modules/project"
+  source = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project"
   billing_account = (var.project_create != null
     ? var.project_create.billing_account_id
     : null
@@ -38,7 +38,7 @@ module "project" {
 
 
 module "vpc" {
-  source     = "../../../modules/net-vpc"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc"
   project_id = module.project.project_id
   name       = "${local.prefix}vpc"
   subnets = [
@@ -64,13 +64,13 @@ module "vpc" {
 }
 
 module "firewall" {
-  source     = "../../../modules/net-vpc-firewall"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall"
   project_id = module.project.project_id
   network    = module.vpc.name
 }
 
 module "nat_ew1" {
-  source         = "../../../modules/net-cloudnat"
+  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat"
   project_id     = module.project.project_id
   region         = "europe-west1"
   name           = "${local.prefix}nat-eu1"
@@ -78,7 +78,7 @@ module "nat_ew1" {
 }
 
 module "nat_ue1" {
-  source         = "../../../modules/net-cloudnat"
+  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat"
   project_id     = module.project.project_id
   region         = "us-east1"
   name           = "${local.prefix}nat-ue1"
@@ -86,7 +86,7 @@ module "nat_ue1" {
 }
 
 module "instance_template_ew1" {
-  source        = "../../../modules/compute-vm"
+  source        = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-vm"
   project_id    = module.project.project_id
   zone          = "europe-west1-b"
   name          = "${local.prefix}europe-west1-template"
@@ -108,7 +108,7 @@ module "instance_template_ew1" {
 }
 
 module "instance_template_ue1" {
-  source     = "../../../modules/compute-vm"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-vm"
   project_id = module.project.project_id
   zone       = "us-east1-b"
   name       = "${local.prefix}us-east1-template"
@@ -129,7 +129,7 @@ module "instance_template_ue1" {
 }
 
 module "vm_siege" {
-  source        = "../../../modules/compute-vm"
+  source        = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-vm"
   project_id    = module.project.project_id
   zone          = "us-west1-c"
   name          = "siege-vm"
@@ -156,7 +156,7 @@ module "vm_siege" {
 }
 
 module "mig_ew1" {
-  source     = "../../../modules/compute-mig"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-mig"
   project_id = module.project.project_id
   location   = "europe-west1"
   name       = "${local.prefix}europe-west1-mig"
@@ -182,7 +182,7 @@ module "mig_ew1" {
 }
 
 module "mig_ue1" {
-  source     = "../../../modules/compute-mig"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-mig"
   project_id = module.project.project_id
   location   = "us-east1"
   name       = "${local.prefix}us-east1-mig"
@@ -208,7 +208,7 @@ module "mig_ue1" {
 }
 
 module "glb" {
-  source     = "../../../modules/net-glb"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-glb"
   name       = "${local.prefix}http-lb"
   project_id = module.project.project_id
   backend_services_config = {
