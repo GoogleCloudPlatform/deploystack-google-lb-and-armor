@@ -58,38 +58,23 @@ Note: To grant a user a role, take a look at the [Granting and Revoking Access](
 
 ### Spinning up the architecture
 
-#### Step 1: Cloning the repository
+Before we deploy the architecture, you will need the following information:
 
-Click on the button below, sign in if required and when the prompt appears, click on “confirm”.
+* The __project ID__
 
-[<p align="center"> <img alt="Open Cloudshell" width = "300px" src="shell_button.png" /> </p>](https://goo.gle/GoCloudArmor)
+Click on the button below, sign in if required and when the prompt appears, click on “confirm”. It will walk you through setting up your architecture.
 
-This will clone the repository to your cloud shell and a screen like this one will appear:
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2FGoogleCloudPlatform%2Fdeploystack-google-lb-and-armor&cloudshell_image=gcr.io%2Fds-artifacts-cloudshell%2Fdeploystack_custom_image&cloudshell_git_branch=main)
+
+This is the startup screen that appears after clicking the button and confirming:
 
 ![cloud_shell](cloud_shell.png)
 
-Before we deploy the architecture, you will need the following information:
+During the process, you will be asked for some user input. All necessary variables are explained at the bottom of this ReadMe file. In case of failure, you can simply click the button again.
 
-* The __project ID__.
-
-#### Step 2: Deploying the resources
-
-1. After cloning the repo, and going through the prerequisites, head back to the cloud shell editor.
-2. Make sure you’re in the following directory. if not, you can change your directory to it via the ‘cd’ command:
-
-       cloudshell_open/cloud-foundation-fabric/blueprints/cloud-operations/glb_and_armor
-
-3. Run the following command to initialize the terraform working directory:
-
-       terraform init
-
-4. Copy the following command into a console and replace __[my-project-id]__ with your project’s ID. Then run the following command to run the terraform script and create all relevant resources for this architecture:
-
-       terraform apply -var project_id=[my-project-id]
-
-The resource creation will take a few minutes… but when it’s complete, you should see an output stating the command completed successfully with a list of the created resources.
-
-__Congratulations__! You have successfully deployed an HTTP Load Balancer with two Managed Instance Group backends and Cloud Armor security.
+<center>
+<h4>🎉 Congratulations! 🎉  <br />
+You have successfully deployed an HTTP Load Balancer with two Managed Instance Group backends and Cloud Armor security.</h4></center>
 
 ## Testing your architecture
 
@@ -101,13 +86,13 @@ __Congratulations__! You have successfully deployed an HTTP Load Balancer with t
 3. Click __Backends__, then click __http-backend__ and navigate to __http-lb__
 4. Click on the __Monitoring__ tab.
 5. Monitor the Frontend Location (Total inbound traffic) between North America and the two backends for 2 to 3 minutes. At first, traffic should just be directed to __us-east1-mig__ but as the RPS increases, traffic is also directed to __europe-west1-mig__. This demonstrates that by default traffic is forwarded to the closest backend but if the load is very high, traffic can be distributed across the backends.
-6. Now, to test the IP deny-listing, rerun terraform as follows:
+6. Now, to test the IP deny-listing, run terraform as follows:
 
         terraform apply -var project_id=my-project-id -var enforce_security_policy=true
 
-This, applies a security policy to denylist the IP address of the siege VM
+This applies a security policy to denylist the IP address of the siege VM.
 
-7. To test this, from the siege VM run the following command and verify that you get a __403 Forbidden__ error code back.
+7. To test this, run the following command from the siege VM and verify that you get a __403 Forbidden__ error code back.
 
         curl http://$LB_IP
 
@@ -115,7 +100,9 @@ This, applies a security policy to denylist the IP address of the siege VM
 
 The easiest way to remove all the deployed resources is to run the following command in Cloud Shell:
 
-        terraform destroy
+``` {shell}
+deploystack uninstall
+```
 
 The above command will delete the associated resources so there will be no billable charges made afterwards.
 
