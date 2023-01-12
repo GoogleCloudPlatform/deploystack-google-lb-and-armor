@@ -17,7 +17,7 @@
 
 output "glb_ip_address" {
   description = "Load balancer IP address."
-  value       = module.glb.global_forwarding_rule.ip_address
+  value       = module.glb.forwarding_rule.ip_address
 }
 
 output "vm_siege_external_ip" {

@@ -19,7 +19,7 @@ locals {
 }
 
 module "project" {
-  source = "../../../modules/project"
+  source = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project?ref=v19.0.0"
   billing_account = (var.project_create != null
     ? var.project_create.billing_account_id
     : null
@@ -38,7 +38,7 @@ module "project" {
 
 
 module "vpc" {
-  source     = "../../../modules/net-vpc"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc?ref=v19.0.0"
   project_id = module.project.project_id
   name       = "${local.prefix}vpc"
   subnets = [
@@ -64,13 +64,13 @@ module "vpc" {
 }
 
 module "firewall" {
-  source     = "../../../modules/net-vpc-firewall"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v19.0.0"
   project_id = module.project.project_id
   network    = module.vpc.name
 }
 
 module "nat_ew1" {
-  source         = "../../../modules/net-cloudnat"
+  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v19.0.0"
   project_id     = module.project.project_id
   region         = "europe-west1"
   name           = "${local.prefix}nat-eu1"
@@ -78,7 +78,7 @@ module "nat_ew1" {
 }
 
 module "nat_ue1" {
-  source         = "../../../modules/net-cloudnat"
+  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v19.0.0"
   project_id     = module.project.project_id
   region         = "us-east1"
   name           = "${local.prefix}nat-ue1"
@@ -86,7 +86,7 @@ module "nat_ue1" {
 }
 
 module "instance_template_ew1" {
-  source        = "../../../modules/compute-vm"
+  source        = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-vm?ref=v19.0.0"
   project_id    = module.project.project_id
   zone          = "europe-west1-b"
   name          = "${local.prefix}europe-west1-template"
@@ -108,7 +108,7 @@ module "instance_template_ew1" {
 }
 
 module "instance_template_ue1" {
-  source     = "../../../modules/compute-vm"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-vm?ref=v19.0.0"
   project_id = module.project.project_id
   zone       = "us-east1-b"
   name       = "${local.prefix}us-east1-template"
@@ -129,7 +129,7 @@ module "instance_template_ue1" {
 }
 
 module "vm_siege" {
-  source        = "../../../modules/compute-vm"
+  source        = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-vm?ref=v19.0.0"
   project_id    = module.project.project_id
   zone          = "us-west1-c"
   name          = "siege-vm"
@@ -156,15 +156,12 @@ module "vm_siege" {
 }
 
 module "mig_ew1" {
-  source     = "../../../modules/compute-mig"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-mig?ref=v19.0.0"
   project_id = module.project.project_id
   location   = "europe-west1"
   name       = "${local.prefix}europe-west1-mig"
-  regional   = true
-  default_version = {
-    instance_template = module.instance_template_ew1.template.self_link
-    name              = "default"
-  }
+  //  regional          = true
+  instance_template = module.instance_template_ew1.template.self_link
   autoscaler_config = {
     max_replicas                      = 5
     min_replicas                      = 1
@@ -182,15 +179,12 @@ module "mig_ew1" {
 }
 
 module "mig_ue1" {
-  source     = "../../../modules/compute-mig"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-mig?ref=v19.0.0"
   project_id = module.project.project_id
   location   = "us-east1"
   name       = "${local.prefix}us-east1-mig"
-  regional   = true
-  default_version = {
-    instance_template = module.instance_template_ue1.template.self_link
-    name              = "default"
-  }
+  //  regional          = true
+  instance_template = module.instance_template_ue1.template.self_link
   autoscaler_config = {
     max_replicas                      = 5
     min_replicas                      = 1
@@ -208,55 +202,36 @@ module "mig_ue1" {
 }
 
 module "glb" {
-  source     = "../../../modules/net-glb"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-glb?ref=v19.0.0"
   name       = "${local.prefix}http-lb"
   project_id = module.project.project_id
-  backend_services_config = {
-    http-backend = {
-      bucket_config = null
-      enable_cdn    = false
-      cdn_config    = null
-      group_config = {
-        backends = [
-          {
-            group   = module.mig_ew1.group_manager.instance_group
-            options = null
-          },
-          {
-            group   = module.mig_ue1.group_manager.instance_group
-            options = null
-          }
-        ],
-        health_checks = ["hc"]
-        log_config = {
-          enable      = true
-          sample_rate = 1
-        }
-        options = {
-          affinity_cookie_ttl_sec         = null
-          custom_request_headers          = null
-          custom_response_headers         = null
-          connection_draining_timeout_sec = null
-          load_balancing_scheme           = null
-          locality_lb_policy              = null
-          port_name                       = "http"
-          security_policy                 = try(google_compute_security_policy.policy[0].name, null)
-          session_affinity                = null
-          timeout_sec                     = null
-          circuits_breakers               = null
-          consistent_hash                 = null
-          iap                             = null
-          protocol                        = "HTTP"
-        }
-      }
+  backend_service_configs = {
+    default = {
+      affinity_cookie_ttl_sec         = null
+      circuits_breakers               = null
+      connection_draining_timeout_sec = null
+      consistent_hash                 = null
+      custom_request_headers          = null
+      custom_response_headers         = null
+      enable_cdn                      = false
+      iap                             = null
+      log_sample_rate                 = 1
+      port_name                       = "http"
+      security_policy                 = try(google_compute_security_policy.policy[0].name, null)
+      session_affinity                = null
+      timeout_sec                     = null
+      protocol                        = "HTTP"
+
+      backends = [{
+        backend = module.mig_ew1.group_manager.instance_group,
+        backend = module.mig_ue1.group_manager.instance_group
+      }]
     }
   }
-  health_checks_config = {
-    hc = {
-      type    = "http"
-      logging = true
-      options = null
-      check = {
+  health_check_configs = {
+    default = {
+      enable_logging = true
+      http = {
         port_name          = "http"
         port_specification = "USE_NAMED_PORT"
       }

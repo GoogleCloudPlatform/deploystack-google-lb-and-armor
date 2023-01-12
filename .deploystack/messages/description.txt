@@ -1,0 +1,5 @@
+This process will create and configure:
+* Cloud Armor
+* Cloud Load Balancer
+* Firewall Rules
+* Managed Instance Groups (MIG)
