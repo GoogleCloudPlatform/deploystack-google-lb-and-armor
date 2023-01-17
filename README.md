@@ -68,7 +68,7 @@ Click on the button below, sign in if required and when the prompt appears, clic
 
 This is the startup screen that appears after clicking the button and confirming:
 
-![cloud_shell](cloud_shell.png)
+![cloud_shell](cloud_shell_new.png)
 
 During the process, you will be asked for some user input. All necessary variables are explained at the bottom of this ReadMe file. In case of failure, you can simply click the button again.
 
