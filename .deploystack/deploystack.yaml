@@ -1,0 +1,19 @@
+"title": "Deploy a Load Balancer protected by Cloud Armor with a Managed Instanance Group in Compute Engine as the backend"
+"duration": 5
+"collect_project": true
+"collect_region": true
+"collect_project_number": false
+"collect_zone": false
+"prepend_project": true
+"region_type": "compute"
+"region_default": "europe-west1"
+"custom_settings":
+  - "name": "project_id"
+    "description": "Project ID"
+    "default": ""
+  - "name": "prefix"
+    "description": "Unique prefix used for resource names"
+    "default": "deploystack"
+#  - "name": "enforce_security_policy"
+#    "description": "Enforce security policy"
+#    "default": "true"
