@@ -78,7 +78,7 @@ module "nat_ew1" {
 }
 
 module "nat_ue1" {
-  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v19.0.0"
+  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v20.0.0"
   project_id     = module.project.project_id
   region         = "us-east1"
   name           = "${local.prefix}nat-ue1"
