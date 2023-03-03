@@ -98,7 +98,7 @@ section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modul
 section_close
 
 section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v20.0.0 exists"
-    evalTest 'gcloud compute routers describe ${PREFIX}--nat-eu1-nat --region europe-west1 --format="value(name)"' "${PREFIX}-nat-eu1-nat"
+    evalTest 'gcloud compute routers describe ${PREFIX}-nat-eu1-nat --region europe-west1 --format="value(name)"' "${PREFIX}-nat-eu1-nat"
     evalTest 'gcloud compute routers describe ${PREFIX}-nat-ue1-nat --region us-east1 --format="value(name)"' "${PREFIX}-nat-ue1-nat"
 section_close
 
