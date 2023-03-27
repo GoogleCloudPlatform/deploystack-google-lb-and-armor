@@ -19,7 +19,7 @@ locals {
 }
 
 module "project" {
-  source = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project?ref=v20.0.0"
+  source = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project?ref=v21.0.0"
   billing_account = (var.project_create != null
     ? var.project_create.billing_account_id
     : null
