@@ -1,3 +1,4 @@
+[![GC Start](gcp_banner.png)](https://cloud.google.com/?utm_source=github&utm_medium=referral&utm_campaign=GCP&utm_content=packages_repository_banner)
 # HTTP Load Balancer with Cloud Armor
 
 ## Introduction
