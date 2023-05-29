@@ -86,7 +86,7 @@ module "nat_ue1" {
 }
 
 module "instance_template_ew1" {
-  source        = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-vm?ref=v20.0.0"
+  source        = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-vm?ref=v22.0.0"
   project_id    = module.project.project_id
   zone          = "europe-west1-b"
   name          = "${local.prefix}europe-west1-template"
