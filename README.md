@@ -7,6 +7,8 @@ This repository contains all necessary Terraform modules to build a multi-region
 
 This tutorial is general enough to fit in a variety of use-cases, from hosting a mobile app's backend to deploy proprietary workloads at scale.
 
+This repo is based on the Cloud Foundation Fabric blueprint available [here](https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/tree/master/blueprints/networking/glb-and-armor).
+
 ## Use cases
 
 Even though there are many ways to implement an architecture, some workloads require high compute power or specific licenses while making sure the services are secured by a managed service and highly available across multiple regions. An architecture consisting of Managed Instance Groups in multiple regions available through an HTTP Load Balancer with Cloud Armor enabled is suitable for such use-cases.
