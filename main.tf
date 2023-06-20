@@ -38,7 +38,7 @@ module "project" {
 
 
 module "vpc" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc?ref=v20.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc?ref=v23.0.0"
   project_id = module.project.project_id
   name       = "${local.prefix}vpc"
   subnets = [
@@ -64,7 +64,7 @@ module "vpc" {
 }
 
 module "firewall" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v20.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v23.0.0"
   project_id = module.project.project_id
   network    = module.vpc.name
 }
@@ -129,7 +129,7 @@ module "instance_template_ue1" {
 }
 
 module "vm_siege" {
-  source        = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-vm?ref=v20.0.0"
+  source        = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-vm?ref=v23.0.0"
   project_id    = module.project.project_id
   zone          = "us-west1-c"
   name          = "siege-vm"
@@ -156,7 +156,7 @@ module "vm_siege" {
 }
 
 module "mig_ew1" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-mig?ref=v20.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-mig?ref=v23.0.0"
   project_id = module.project.project_id
   location   = "europe-west1"
   name       = "${local.prefix}europe-west1-mig"
@@ -179,7 +179,7 @@ module "mig_ew1" {
 }
 
 module "mig_ue1" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-mig?ref=v20.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-mig?ref=v23.0.0"
   project_id = module.project.project_id
   location   = "us-east1"
   name       = "${local.prefix}us-east1-mig"
@@ -202,7 +202,7 @@ module "mig_ue1" {
 }
 
 module "glb" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-glb?ref=v20.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-glb?ref=v23.0.0"
   name       = "${local.prefix}http-lb"
   project_id = module.project.project_id
   backend_service_configs = {
