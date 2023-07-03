@@ -144,7 +144,9 @@ module "vm_siege" {
     nat        = true
   }]
   boot_disk = {
-    image = "projects/debian-cloud/global/images/family/debian-11"
+    initialize_params = {
+      image = "projects/debian-cloud/global/images/family/debian-11"
+    }
   }
   metadata = {
     startup-script = <<EOT
