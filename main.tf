@@ -96,7 +96,9 @@ module "instance_template_ew1" {
     subnetwork = module.vpc.subnet_self_links["europe-west1/subnet-ew1"]
   }]
   boot_disk = {
-    image = "projects/debian-cloud/global/images/family/debian-11"
+    initialize_params = {
+      image = "projects/debian-cloud/global/images/family/debian-11"
+    }
   }
   metadata = {
     startup-script-url = "gs://cloud-training/gcpnet/httplb/startup.sh"
@@ -117,7 +119,9 @@ module "instance_template_ue1" {
     subnetwork = module.vpc.subnet_self_links["us-east1/subnet-ue1"]
   }]
   boot_disk = {
-    image = "projects/debian-cloud/global/images/family/debian-11"
+    initialize_params = {
+      image = "projects/debian-cloud/global/images/family/debian-11"
+    }
   }
   metadata = {
     startup-script-url = "gs://cloud-training/gcpnet/httplb/startup.sh"
@@ -140,7 +144,9 @@ module "vm_siege" {
     nat        = true
   }]
   boot_disk = {
-    image = "projects/debian-cloud/global/images/family/debian-11"
+    initialize_params = {
+      image = "projects/debian-cloud/global/images/family/debian-11"
+    }
   }
   metadata = {
     startup-script = <<EOT
