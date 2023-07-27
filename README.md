@@ -1,11 +1,14 @@
 [![GC Start](gcp_banner.png)](https://cloud.google.com/?utm_source=github&utm_medium=referral&utm_campaign=GCP&utm_content=packages_repository_banner)
-# HTTP Load Balancer with Cloud Armor
+# Protect your High Availability workloads with Load Balancer and Cloud Armor
 
 ## Introduction
 
-This repository contains all necessary Terraform modules to build a multi-regional infrastructure with horizontally scalable managed instance group backends, HTTP load balancing and Google’s advanced WAF security tool (Cloud Armor) on top to securely deploy an application at global scale.
+_This architecture uses click-to-deploy so you can spin up infrastructure in minutes using terraform!_
 
-This tutorial is general enough to fit in a variety of use-cases, from hosting a mobile app's backend to deploy proprietary workloads at scale.
+DDoS attacks are a type of cyber attack that can overwhelm a website or server with traffic, making it unavailable to users. These attacks can be costly and disruptive, and they can negatively impact your business.**Cloud Armor** is a product that protects your applications against a wide range of attacks, including **SQL injection**, **cross-site scripting (XXS)** and **Denial of Service.** 
+
+**Cloud load balancing** is a service that distributes incoming network or application traffic across multiple servers. This can help to improve the performance, reliability, and availability of your applications. **When you combine Cloud Armor and Load Balancing**, you can create a **powerfu**l and **scalable security solution **for your applications.** Cloud Armor** can **protect your applications** from a wide range of attacks, while **Load Balancing** can ensure your apps are **always available**.
+
 
 This repo is based on the Cloud Foundation Fabric blueprint available [here](https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/tree/master/blueprints/networking/glb-and-armor).
 
