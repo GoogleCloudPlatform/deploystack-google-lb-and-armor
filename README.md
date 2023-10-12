@@ -5,7 +5,7 @@
 
 _This architecture uses click-to-deploy so you can spin up infrastructure in minutes using terraform!_
 
-DDoS attacks are a type of cyber attack that can overwhelm a website or server with traffic, making it unavailable to users. These attacks can be costly and disruptive, and they can negatively impact your business.**Cloud Armor** is a product that protects your applications against a wide range of attacks, including **SQL injection**, **cross-site scripting (XXS)** and **Denial of Service.** 
+DDoS attacks are a type of cyber attack that can overwhelm a website or server with traffic, making it unavailable to users. These attacks can incur significant costs and disruptions, severely affecting your business.**Cloud Armor** is a robust solution that shields your applications from an extensive array of attacks, including **SQL injection**, **cross-site scripting (XXS)** and **Denial of Service.** 
 
 **Cloud load balancing** is a service that distributes incoming network or application traffic across multiple servers. This can help to improve the performance, reliability, and availability of your applications. **When you combine Cloud Armor and Load Balancing**, you can create a **powerfu**l and **scalable security solution **for your applications.** Cloud Armor** can **protect your applications** from a wide range of attacks, while **Load Balancing** can ensure your apps are **always available**.
 
@@ -14,13 +14,13 @@ This repo is based on the Cloud Foundation Fabric blueprint available [here](htt
 
 ## Use cases
 
-Even though there are many ways to implement an architecture, some workloads require high compute power or specific licenses while making sure the services are secured by a managed service and highly available across multiple regions. An architecture consisting of Managed Instance Groups in multiple regions available through an HTTP Load Balancer with Cloud Armor enabled is suitable for such use-cases.
+Various implementation methods exist for architectures. Certain workloads demand high compute power or specific licenses, necessitating secure, managed services available across multiple regions. This architecture involves Managed Instance Groups in multiple regions accessible via an HTTP Load Balancer with Cloud Armor enabled, making it ideal for these use cases.
 
 This architecture caters to multiple workloads ranging from the ones requiring compliance with specific data access restrictions to compute-specific proprietary applications with specific licensing and OS requirements. Descriptions of some possible use-cases are as follows:
 
-* __Proprietary OS workloads__: Some applications require specific Operating systems (enterprise grade Linux distributions for example) with specific licensing requirements or low-level access to the kernel. In such cases, since the applications cannot be containerised and horizontal scaling is required, multi-region Managed Instance Group (MIG) with custom instance images are the ideal implementation.
-* __Industry-specific applications__: Other applications may require high compute power alongside a sophisticated layer of networking security. This architecture satisfies both these requirements by promising configurable compute power on the instances backed by various features offered by Cloud Armor such as traffic restriction, DDoS protection etc.
-* __Workloads requiring GDPR compliance__: Most applications require restricting data access and usage from outside a certain region (mostly to comply with data residency requirements). This architecture caters to such workloads as Cloud Armor allows you to lock access to your workloads from various fine-grained identifiers.
+* __Proprietary OS workloads__: Some applications require specific Operating systems (enterprise grade Linux distributions for example) with specific licensing requirements or low-level access to the kernel. For such applications that cannot be containerized and require horizontal scaling, the ideal solution is a multi-region Managed Instance Group (MIG) with custom instance images.
+* __Industry-specific applications__: Other applications may require high compute power alongside a sophisticated layer of networking security. This architecture meets these requirements by providing configurable compute power on instances supported by Cloud Armor features like traffic restriction and DDoS protection.
+* __Workloads requiring GDPR compliance__: Many applications need to restrict data access and usage to comply with specific data residency requirements, usually limited to a certain region. This architecture caters to such workloads as Cloud Armor allows you to lock access to your workloads from various fine-grained identifiers.
 * __Medical Queuing systems__: Another great example usage for this  architecture will be applications requiring high compute power, availability and limited memory access requirements such as a medical queuing system.
 * __DDoS Protection and WAF__:  Applications and workloads exposed to the internet expose themselves to the risk of DDoS attacks. While L3/L4 and protocol based attacks are handled at Google’s edge, L7 attacks can still be effective with botnets. A setup of an external Cloud Load Balancer with Cloud Armor and appropriate WAF rules can mitigate such attacks.
 * __Geofencing__: If you want to restrict content served on your application due to licensing restrictions (similar to OTT content in the US), Geofencing allows you to create a virtual perimeter to stop the service from being accessed outside the region. The architecture of using a Cloud Load Balancer with Cloud Armor enables you to implement geofencing around your applications and services.
@@ -48,7 +48,7 @@ Pricing Estimates - We have created a sample estimate based on some usage we see
 
 ## Setup
 
-This solution assumes you already have a project created and set up where you wish to host these resources. If not, and you would like for the project to create a new project as well,  please refer to the [github repository](https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/tree/master/blueprints/data-solutions/gcs-to-bq-with-least-privileges) for instructions.
+This solution assumes you already have a project created and set up where you wish to host these resources. If not, and you prefer the system to create a new project for you,  please refer to the [github repository](https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/tree/master/blueprints/data-solutions/gcs-to-bq-with-least-privileges) for instructions.
 
 ### Prerequisites
 
@@ -60,7 +60,7 @@ This solution assumes you already have a project created and set up where you wi
 
 In order to spin up this architecture, you will need to be a user with the “__Project owner__” [IAM](https://cloud.google.com/iam) role on the existing project:
 
-Note: To grant a user a role, take a look at the [Granting and Revoking Access](https://cloud.google.com/iam/docs/granting-changing-revoking-access#grant-single-role) documentation.
+Note: To assign a role to a user, consult the [Granting and Revoking Access](https://cloud.google.com/iam/docs/granting-changing-revoking-access#grant-single-role) documentation.
 
 ### Spinning up the architecture
 
@@ -68,7 +68,7 @@ Before we deploy the architecture, you will need the following information:
 
 * The __project ID__
 
-Click on the button below, sign in if required and when the prompt appears, click on “confirm”. It will walk you through setting up your architecture.
+Click the button below, sign in if necessary, and confirm when prompted. The system will guide you through setting up your architecture.
 
 [![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/GoogleCloudPlatform/deploystack-google-lb-and-armor&cloudshell_image=gcr.io%2Fds-artifacts-cloudshell%2Fdeploystack_custom_image&cloudshell_git_branch=main&cloudshell_tutorial=tutorial.md)
 
