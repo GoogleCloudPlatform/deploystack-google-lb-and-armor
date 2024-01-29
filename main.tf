@@ -110,7 +110,7 @@ module "instance_template_ew1" {
 }
 
 module "instance_template_ue1" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-vm?ref=v23.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-vm?ref=v29.0.0"
   project_id = module.project.project_id
   zone       = "us-east1-b"
   name       = "${local.prefix}us-east1-template"
