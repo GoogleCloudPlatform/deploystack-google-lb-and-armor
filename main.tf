@@ -133,7 +133,7 @@ module "instance_template_ue1" {
 }
 
 module "vm_siege" {
-  source        = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-vm?ref=v23.0.0"
+  source        = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-vm?ref=v30.0.0"
   project_id    = module.project.project_id
   zone          = "us-west1-c"
   name          = "siege-vm"
