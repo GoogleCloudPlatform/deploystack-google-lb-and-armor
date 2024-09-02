@@ -185,7 +185,7 @@ module "mig_ew1" {
 }
 
 module "mig_ue1" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-mig?ref=v23.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-mig?ref=v34.0.0"
   project_id = module.project.project_id
   location   = "us-east1"
   name       = "${local.prefix}us-east1-mig"
