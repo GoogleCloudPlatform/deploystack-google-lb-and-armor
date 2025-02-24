@@ -70,7 +70,7 @@ module "firewall" {
 }
 
 module "nat_ew1" {
-  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v34.1.0"
+  source         = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-cloudnat?ref=v38.0.0"
   project_id     = module.project.project_id
   region         = "europe-west1"
   name           = "${local.prefix}nat-eu1"
