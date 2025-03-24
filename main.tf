@@ -213,7 +213,7 @@ module "mig_ue1" {
 }
 
 module "glb" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-lb-app-ext?ref=v34.1.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-lb-app-ext?ref=v38.1.0"
   name       = "${local.prefix}http-lb"
   project_id = module.project.project_id
   backend_service_configs = {
