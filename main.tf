@@ -38,7 +38,7 @@ module "project" {
 
 
 module "vpc" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc?ref=v59.2.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc?ref=v60.0.0"
   project_id = module.project.project_id
   name       = "${local.prefix}vpc"
   subnets = [
