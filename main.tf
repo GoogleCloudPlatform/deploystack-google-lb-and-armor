@@ -61,7 +61,7 @@ module "vpc" {
 }
 
 module "firewall" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v59.2.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/net-vpc-firewall?ref=v60.0.0"
   project_id = module.project.project_id
   network    = module.vpc.name
 }
