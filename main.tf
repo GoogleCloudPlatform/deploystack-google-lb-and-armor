@@ -164,7 +164,7 @@ module "vm_siege" {
 }
 
 module "mig_ew1" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-mig?ref=v59.2.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/compute-mig?ref=v60.0.0"
   project_id = module.project.project_id
   location   = "europe-west1"
   name       = "${local.prefix}europe-west1-mig"
